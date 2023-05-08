@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="248edc39e71842408b17f85a88222a66" Name="Diagram1">
+        <EntityTypeShape EntityType="NewsDBModel.tblAuthority" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblCategorys" Width="1.5" PointX="7.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblComments" Width="1.5" PointX="7.5" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblMedia" Width="1.5" PointX="7.5" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblNews" Width="1.5" PointX="9.875" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblNewsCategoryMap" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblUsers" Width="1.5" PointX="3" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="NewsDBModel.tblUsersAuthority" Width="1.5" PointX="5.25" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="NewsDBModel.FK__tblUsers__author__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK__tblUsersA__autho__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK__tblNewsCa__kateg__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK_tblComments_tblNews" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK_tblComments_tblUsers" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK__tblMedia__newsId__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK__tblNews__newsUse__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK__tblUsersA__userI__2D27B809" ManuallyRouted="false" />
+        <AssociationConnector Association="NewsDBModel.FK_tblNewsCategoryMap_tblNews" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

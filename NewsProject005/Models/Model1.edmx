@@ -1,0 +1,660 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="NewsDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tblAuthority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="authorityName" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblCategorys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="categoryName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="lockCategory" Type="tinyint" Nullable="false" />
+          <Property Name="status" Type="tinyint" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="editingDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblComments">
+          <Key>
+            <PropertyRef Name="YorumId" />
+          </Key>
+          <Property Name="YorumId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="YorumIcerik" Type="nchar" MaxLength="500" />
+          <Property Name="UyeId" Type="int" Nullable="false" />
+          <Property Name="HaberId" Type="int" Nullable="false" />
+          <Property Name="Tarih" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tblMedia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="path" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="newsId" Type="int" Nullable="false" />
+          <Property Name="type" Type="tinyint" Nullable="false" />
+          <Property Name="order" Type="int" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="newsSmallTitle" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="newsTitle" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="newsSummary" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="newsDetail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="newsViewing" Type="int" Nullable="false" />
+          <Property Name="newsTypeId" Type="int" Nullable="false" />
+          <Property Name="newsUserAddId" Type="int" Nullable="false" />
+          <Property Name="newsCuff" Type="int" Nullable="false" />
+          <Property Name="newsStatus" Type="tinyint" Nullable="false" />
+          <Property Name="newsConfirmation" Type="int" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+          <Property Name="editingDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblNewsCategoryMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="haber_id" Type="int" Nullable="false" />
+          <Property Name="kategori_id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="images" Type="varchar" MaxLength="255" />
+          <Property Name="nameSurname" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="mail" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="userName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="password" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="authorityId" Type="int" Nullable="false" />
+          <Property Name="facebook" Type="varchar" MaxLength="255" />
+          <Property Name="instagram" Type="varchar" MaxLength="255" />
+          <Property Name="twitter" Type="varchar" MaxLength="255" />
+          <Property Name="linkedin" Type="varchar" MaxLength="255" />
+          <Property Name="editingDate" Type="datetime" Nullable="false" />
+          <Property Name="createdDate" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblUsersAuthority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="userId" Type="int" Nullable="false" />
+          <Property Name="authorityId" Type="int" Nullable="false" />
+          <Property Name="newsAuthorizeAdd" Type="tinyint" Nullable="false" />
+          <Property Name="newsVideoAuthorizeAdd" Type="tinyint" Nullable="false" />
+          <Property Name="CornerTextAuthorizeAdd" Type="tinyint" Nullable="false" />
+          <Property Name="newsAlwaysAuthorizeAdd" Type="bigint" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__tblMedia__newsId__398D8EEE">
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="1" />
+          <End Role="tblMedia" Type="Self.tblMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMedia">
+              <PropertyRef Name="newsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNews__newsUse__37A5467C">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="newsUserAddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNewsCa__kateg__31EC6D26">
+          <End Role="tblCategorys" Type="Self.tblCategorys" Multiplicity="1" />
+          <End Role="tblNewsCategoryMap" Type="Self.tblNewsCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategorys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblNewsCategoryMap">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsers__author__30F848ED">
+          <End Role="tblAuthority" Type="Self.tblAuthority" Multiplicity="1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAuthority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="authorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsersA__autho__2F10007B">
+          <End Role="tblAuthority" Type="Self.tblAuthority" Multiplicity="1" />
+          <End Role="tblUsersAuthority" Type="Self.tblUsersAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAuthority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsersAuthority">
+              <PropertyRef Name="authorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsersA__userI__2D27B809">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUsersAuthority" Type="Self.tblUsersAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsersAuthority">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComments_tblNews">
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="1" />
+          <End Role="tblComments" Type="Self.tblComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComments">
+              <PropertyRef Name="HaberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComments_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblComments" Type="Self.tblComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComments">
+              <PropertyRef Name="UyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblNewsCategoryMap_tblNews">
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="1" />
+          <End Role="tblNewsCategoryMap" Type="Self.tblNewsCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNewsCategoryMap">
+              <PropertyRef Name="haber_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewsDBModelStoreContainer">
+          <EntitySet Name="tblAuthority" EntityType="Self.tblAuthority" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblCategorys" EntityType="Self.tblCategorys" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblComments" EntityType="Self.tblComments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblMedia" EntityType="Self.tblMedia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblNewsCategoryMap" EntityType="Self.tblNewsCategoryMap" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tblUsersAuthority" EntityType="Self.tblUsersAuthority" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__tblMedia__newsId__398D8EEE" Association="Self.FK__tblMedia__newsId__398D8EEE">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblMedia" EntitySet="tblMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNews__newsUse__37A5467C" Association="Self.FK__tblNews__newsUse__37A5467C">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNewsCa__kateg__31EC6D26" Association="Self.FK__tblNewsCa__kateg__31EC6D26">
+            <End Role="tblCategorys" EntitySet="tblCategorys" />
+            <End Role="tblNewsCategoryMap" EntitySet="tblNewsCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsers__author__30F848ED" Association="Self.FK__tblUsers__author__30F848ED">
+            <End Role="tblAuthority" EntitySet="tblAuthority" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsersA__autho__2F10007B" Association="Self.FK__tblUsersA__autho__2F10007B">
+            <End Role="tblAuthority" EntitySet="tblAuthority" />
+            <End Role="tblUsersAuthority" EntitySet="tblUsersAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsersA__userI__2D27B809" Association="Self.FK__tblUsersA__userI__2D27B809">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUsersAuthority" EntitySet="tblUsersAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComments_tblNews" Association="Self.FK_tblComments_tblNews">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblComments" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComments_tblUsers" Association="Self.FK_tblComments_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblComments" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNewsCategoryMap_tblNews" Association="Self.FK_tblNewsCategoryMap_tblNews">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblNewsCategoryMap" EntitySet="tblNewsCategoryMap" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="NewsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="tblAuthority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="authorityName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsers__author__30F848ED" FromRole="tblAuthority" ToRole="tblUsers" />
+          <NavigationProperty Name="tblUsersAuthority" Relationship="Self.FK__tblUsersA__autho__2F10007B" FromRole="tblAuthority" ToRole="tblUsersAuthority" />
+        </EntityType>
+        <EntityType Name="tblCategorys">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="categoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="lockCategory" Type="Byte" Nullable="false" />
+          <Property Name="status" Type="Byte" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="editingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblNewsCategoryMap" Relationship="Self.FK__tblNewsCa__kateg__31EC6D26" FromRole="tblCategorys" ToRole="tblNewsCategoryMap" />
+        </EntityType>
+        <EntityType Name="tblComments">
+          <Key>
+            <PropertyRef Name="YorumId" />
+          </Key>
+          <Property Name="YorumId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="YorumIcerik" Type="String" MaxLength="500" FixedLength="true" Unicode="true" />
+          <Property Name="UyeId" Type="Int32" Nullable="false" />
+          <Property Name="HaberId" Type="Int32" Nullable="false" />
+          <Property Name="Tarih" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="tblNews" Relationship="Self.FK_tblComments_tblNews" FromRole="tblComments" ToRole="tblNews" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK_tblComments_tblUsers" FromRole="tblComments" ToRole="tblUsers" />
+        </EntityType>
+        <EntityType Name="tblMedia">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="path" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="newsId" Type="Int32" Nullable="false" />
+          <Property Name="type" Type="Byte" Nullable="false" />
+          <Property Name="order" Type="Int32" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblNews" Relationship="Self.FK__tblMedia__newsId__398D8EEE" FromRole="tblMedia" ToRole="tblNews" />
+        </EntityType>
+        <EntityType Name="tblNews">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="newsSmallTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="newsTitle" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="newsSummary" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="newsDetail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="newsViewing" Type="Int32" Nullable="false" />
+          <Property Name="newsTypeId" Type="Int32" Nullable="false" />
+          <Property Name="newsUserAddId" Type="Int32" Nullable="false" />
+          <Property Name="newsCuff" Type="Int32" Nullable="false" />
+          <Property Name="newsStatus" Type="Byte" Nullable="false" />
+          <Property Name="newsConfirmation" Type="Int32" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="editingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComments_tblNews" FromRole="tblNews" ToRole="tblComments" />
+          <NavigationProperty Name="tblMedia" Relationship="Self.FK__tblMedia__newsId__398D8EEE" FromRole="tblNews" ToRole="tblMedia" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblNews__newsUse__37A5467C" FromRole="tblNews" ToRole="tblUsers" />
+          <NavigationProperty Name="tblNewsCategoryMap" Relationship="NewsDBModel.FK_tblNewsCategoryMap_tblNews" FromRole="tblNews" ToRole="tblNewsCategoryMap" />
+        </EntityType>
+        <EntityType Name="tblNewsCategoryMap">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="haber_id" Type="Int32" Nullable="false" />
+          <Property Name="kategori_id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="tblCategorys" Relationship="Self.FK__tblNewsCa__kateg__31EC6D26" FromRole="tblNewsCategoryMap" ToRole="tblCategorys" />
+          <NavigationProperty Name="tblNews" Relationship="NewsDBModel.FK_tblNewsCategoryMap_tblNews" FromRole="tblNewsCategoryMap" ToRole="tblNews" />
+        </EntityType>
+        <EntityType Name="tblUsers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="images" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="nameSurname" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="mail" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="userName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="authorityId" Type="Int32" Nullable="false" />
+          <Property Name="facebook" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="instagram" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="twitter" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="linkedin" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="editingDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="tblAuthority" Relationship="Self.FK__tblUsers__author__30F848ED" FromRole="tblUsers" ToRole="tblAuthority" />
+          <NavigationProperty Name="tblComments" Relationship="Self.FK_tblComments_tblUsers" FromRole="tblUsers" ToRole="tblComments" />
+          <NavigationProperty Name="tblNews" Relationship="Self.FK__tblNews__newsUse__37A5467C" FromRole="tblUsers" ToRole="tblNews" />
+          <NavigationProperty Name="tblUsersAuthority" Relationship="Self.FK__tblUsersA__userI__2D27B809" FromRole="tblUsers" ToRole="tblUsersAuthority" />
+        </EntityType>
+        <EntityType Name="tblUsersAuthority">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="Int32" Nullable="false" />
+          <Property Name="authorityId" Type="Int32" Nullable="false" />
+          <Property Name="newsAuthorizeAdd" Type="Byte" Nullable="false" />
+          <Property Name="newsVideoAuthorizeAdd" Type="Byte" Nullable="false" />
+          <Property Name="CornerTextAuthorizeAdd" Type="Byte" Nullable="false" />
+          <Property Name="newsAlwaysAuthorizeAdd" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="tblAuthority" Relationship="Self.FK__tblUsersA__autho__2F10007B" FromRole="tblUsersAuthority" ToRole="tblAuthority" />
+          <NavigationProperty Name="tblUsers" Relationship="Self.FK__tblUsersA__userI__2D27B809" FromRole="tblUsersAuthority" ToRole="tblUsers" />
+        </EntityType>
+        <Association Name="FK__tblUsers__author__30F848ED">
+          <End Role="tblAuthority" Type="Self.tblAuthority" Multiplicity="1" />
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAuthority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsers">
+              <PropertyRef Name="authorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsersA__autho__2F10007B">
+          <End Role="tblAuthority" Type="Self.tblAuthority" Multiplicity="1" />
+          <End Role="tblUsersAuthority" Type="Self.tblUsersAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblAuthority">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsersAuthority">
+              <PropertyRef Name="authorityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNewsCa__kateg__31EC6D26">
+          <End Role="tblCategorys" Type="Self.tblCategorys" Multiplicity="1" />
+          <End Role="tblNewsCategoryMap" Type="Self.tblNewsCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblCategorys">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="tblNewsCategoryMap">
+              <PropertyRef Name="kategori_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComments_tblNews">
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="1" />
+          <End Role="tblComments" Type="Self.tblComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComments">
+              <PropertyRef Name="HaberId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblComments_tblUsers">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblComments" Type="Self.tblComments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblComments">
+              <PropertyRef Name="UyeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblMedia__newsId__398D8EEE">
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="1" />
+          <End Role="tblMedia" Type="Self.tblMedia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblMedia">
+              <PropertyRef Name="newsId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblNews__newsUse__37A5467C">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblNews" Type="Self.tblNews" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNews">
+              <PropertyRef Name="newsUserAddId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tblUsersA__userI__2D27B809">
+          <End Role="tblUsers" Type="Self.tblUsers" Multiplicity="1" />
+          <End Role="tblUsersAuthority" Type="Self.tblUsersAuthority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblUsers">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblUsersAuthority">
+              <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="NewsDBEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tblAuthority" EntityType="Self.tblAuthority" />
+          <EntitySet Name="tblCategorys" EntityType="Self.tblCategorys" />
+          <EntitySet Name="tblComments" EntityType="Self.tblComments" />
+          <EntitySet Name="tblMedia" EntityType="Self.tblMedia" />
+          <EntitySet Name="tblNews" EntityType="Self.tblNews" />
+          <EntitySet Name="tblNewsCategoryMap" EntityType="Self.tblNewsCategoryMap" />
+          <EntitySet Name="tblUsers" EntityType="Self.tblUsers" />
+          <EntitySet Name="tblUsersAuthority" EntityType="Self.tblUsersAuthority" />
+          <AssociationSet Name="FK__tblUsers__author__30F848ED" Association="Self.FK__tblUsers__author__30F848ED">
+            <End Role="tblAuthority" EntitySet="tblAuthority" />
+            <End Role="tblUsers" EntitySet="tblUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsersA__autho__2F10007B" Association="Self.FK__tblUsersA__autho__2F10007B">
+            <End Role="tblAuthority" EntitySet="tblAuthority" />
+            <End Role="tblUsersAuthority" EntitySet="tblUsersAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNewsCa__kateg__31EC6D26" Association="Self.FK__tblNewsCa__kateg__31EC6D26">
+            <End Role="tblCategorys" EntitySet="tblCategorys" />
+            <End Role="tblNewsCategoryMap" EntitySet="tblNewsCategoryMap" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComments_tblNews" Association="Self.FK_tblComments_tblNews">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblComments" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblComments_tblUsers" Association="Self.FK_tblComments_tblUsers">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblComments" EntitySet="tblComments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblMedia__newsId__398D8EEE" Association="Self.FK__tblMedia__newsId__398D8EEE">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblMedia" EntitySet="tblMedia" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblNews__newsUse__37A5467C" Association="Self.FK__tblNews__newsUse__37A5467C">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblNews" EntitySet="tblNews" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tblUsersA__userI__2D27B809" Association="Self.FK__tblUsersA__userI__2D27B809">
+            <End Role="tblUsers" EntitySet="tblUsers" />
+            <End Role="tblUsersAuthority" EntitySet="tblUsersAuthority" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblNewsCategoryMap_tblNews" Association="NewsDBModel.FK_tblNewsCategoryMap_tblNews">
+            <End Role="tblNews" EntitySet="tblNews" />
+            <End Role="tblNewsCategoryMap" EntitySet="tblNewsCategoryMap" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="FK_tblNewsCategoryMap_tblNews">
+          <End Type="NewsDBModel.tblNews" Role="tblNews" Multiplicity="1" />
+          <End Type="NewsDBModel.tblNewsCategoryMap" Role="tblNewsCategoryMap" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblNews">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="tblNewsCategoryMap">
+              <PropertyRef Name="haber_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="NewsDBModelStoreContainer" CdmEntityContainer="NewsDBEntities1">
+          <EntitySetMapping Name="tblAuthority">
+            <EntityTypeMapping TypeName="NewsDBModel.tblAuthority">
+              <MappingFragment StoreEntitySet="tblAuthority">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="authorityName" ColumnName="authorityName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblCategorys">
+            <EntityTypeMapping TypeName="NewsDBModel.tblCategorys">
+              <MappingFragment StoreEntitySet="tblCategorys">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+                <ScalarProperty Name="lockCategory" ColumnName="lockCategory" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblComments">
+            <EntityTypeMapping TypeName="NewsDBModel.tblComments">
+              <MappingFragment StoreEntitySet="tblComments">
+                <ScalarProperty Name="YorumId" ColumnName="YorumId" />
+                <ScalarProperty Name="YorumIcerik" ColumnName="YorumIcerik" />
+                <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+                <ScalarProperty Name="HaberId" ColumnName="HaberId" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblMedia">
+            <EntityTypeMapping TypeName="NewsDBModel.tblMedia">
+              <MappingFragment StoreEntitySet="tblMedia">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="path" ColumnName="path" />
+                <ScalarProperty Name="newsId" ColumnName="newsId" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="order" ColumnName="order" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNews">
+            <EntityTypeMapping TypeName="NewsDBModel.tblNews">
+              <MappingFragment StoreEntitySet="tblNews">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="newsSmallTitle" ColumnName="newsSmallTitle" />
+                <ScalarProperty Name="newsTitle" ColumnName="newsTitle" />
+                <ScalarProperty Name="newsSummary" ColumnName="newsSummary" />
+                <ScalarProperty Name="newsDetail" ColumnName="newsDetail" />
+                <ScalarProperty Name="newsViewing" ColumnName="newsViewing" />
+                <ScalarProperty Name="newsTypeId" ColumnName="newsTypeId" />
+                <ScalarProperty Name="newsUserAddId" ColumnName="newsUserAddId" />
+                <ScalarProperty Name="newsCuff" ColumnName="newsCuff" />
+                <ScalarProperty Name="newsStatus" ColumnName="newsStatus" />
+                <ScalarProperty Name="newsConfirmation" ColumnName="newsConfirmation" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblNewsCategoryMap">
+            <EntityTypeMapping TypeName="NewsDBModel.tblNewsCategoryMap">
+              <MappingFragment StoreEntitySet="tblNewsCategoryMap">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="haber_id" ColumnName="haber_id" />
+                <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsers">
+            <EntityTypeMapping TypeName="NewsDBModel.tblUsers">
+              <MappingFragment StoreEntitySet="tblUsers">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="images" ColumnName="images" />
+                <ScalarProperty Name="nameSurname" ColumnName="nameSurname" />
+                <ScalarProperty Name="mail" ColumnName="mail" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="authorityId" ColumnName="authorityId" />
+                <ScalarProperty Name="facebook" ColumnName="facebook" />
+                <ScalarProperty Name="instagram" ColumnName="instagram" />
+                <ScalarProperty Name="twitter" ColumnName="twitter" />
+                <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+                <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblUsersAuthority">
+            <EntityTypeMapping TypeName="NewsDBModel.tblUsersAuthority">
+              <MappingFragment StoreEntitySet="tblUsersAuthority">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="authorityId" ColumnName="authorityId" />
+                <ScalarProperty Name="newsAuthorizeAdd" ColumnName="newsAuthorizeAdd" />
+                <ScalarProperty Name="newsVideoAuthorizeAdd" ColumnName="newsVideoAuthorizeAdd" />
+                <ScalarProperty Name="CornerTextAuthorizeAdd" ColumnName="CornerTextAuthorizeAdd" />
+                <ScalarProperty Name="newsAlwaysAuthorizeAdd" ColumnName="newsAlwaysAuthorizeAdd" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

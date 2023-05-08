@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>MyProject</name>
+  </assembly>
+  <members>
+    <member name="M:NewsProject005.Controllers.ServiceController.HaberDuzenle(NewsModel)">
+      <summary>
+        Haber düzenleme yöntemi
+      </summary>
+      <param name="model">Haber verileri</param>
+      <returns>İşlem sonucu</returns>
+    </member>
+  </members>
+</doc>

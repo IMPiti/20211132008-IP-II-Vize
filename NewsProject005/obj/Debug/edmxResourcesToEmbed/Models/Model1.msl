@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="NewsDBModelStoreContainer" CdmEntityContainer="NewsDBEntities1">
+    <EntitySetMapping Name="tblAuthority">
+      <EntityTypeMapping TypeName="NewsDBModel.tblAuthority">
+        <MappingFragment StoreEntitySet="tblAuthority">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="authorityName" ColumnName="authorityName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblCategorys">
+      <EntityTypeMapping TypeName="NewsDBModel.tblCategorys">
+        <MappingFragment StoreEntitySet="tblCategorys">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="categoryName" ColumnName="categoryName" />
+          <ScalarProperty Name="lockCategory" ColumnName="lockCategory" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblComments">
+      <EntityTypeMapping TypeName="NewsDBModel.tblComments">
+        <MappingFragment StoreEntitySet="tblComments">
+          <ScalarProperty Name="YorumId" ColumnName="YorumId" />
+          <ScalarProperty Name="YorumIcerik" ColumnName="YorumIcerik" />
+          <ScalarProperty Name="UyeId" ColumnName="UyeId" />
+          <ScalarProperty Name="HaberId" ColumnName="HaberId" />
+          <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblMedia">
+      <EntityTypeMapping TypeName="NewsDBModel.tblMedia">
+        <MappingFragment StoreEntitySet="tblMedia">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="path" ColumnName="path" />
+          <ScalarProperty Name="newsId" ColumnName="newsId" />
+          <ScalarProperty Name="type" ColumnName="type" />
+          <ScalarProperty Name="order" ColumnName="order" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNews">
+      <EntityTypeMapping TypeName="NewsDBModel.tblNews">
+        <MappingFragment StoreEntitySet="tblNews">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="newsSmallTitle" ColumnName="newsSmallTitle" />
+          <ScalarProperty Name="newsTitle" ColumnName="newsTitle" />
+          <ScalarProperty Name="newsSummary" ColumnName="newsSummary" />
+          <ScalarProperty Name="newsDetail" ColumnName="newsDetail" />
+          <ScalarProperty Name="newsViewing" ColumnName="newsViewing" />
+          <ScalarProperty Name="newsTypeId" ColumnName="newsTypeId" />
+          <ScalarProperty Name="newsUserAddId" ColumnName="newsUserAddId" />
+          <ScalarProperty Name="newsCuff" ColumnName="newsCuff" />
+          <ScalarProperty Name="newsStatus" ColumnName="newsStatus" />
+          <ScalarProperty Name="newsConfirmation" ColumnName="newsConfirmation" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblNewsCategoryMap">
+      <EntityTypeMapping TypeName="NewsDBModel.tblNewsCategoryMap">
+        <MappingFragment StoreEntitySet="tblNewsCategoryMap">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="haber_id" ColumnName="haber_id" />
+          <ScalarProperty Name="kategori_id" ColumnName="kategori_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsers">
+      <EntityTypeMapping TypeName="NewsDBModel.tblUsers">
+        <MappingFragment StoreEntitySet="tblUsers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="images" ColumnName="images" />
+          <ScalarProperty Name="nameSurname" ColumnName="nameSurname" />
+          <ScalarProperty Name="mail" ColumnName="mail" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="authorityId" ColumnName="authorityId" />
+          <ScalarProperty Name="facebook" ColumnName="facebook" />
+          <ScalarProperty Name="instagram" ColumnName="instagram" />
+          <ScalarProperty Name="twitter" ColumnName="twitter" />
+          <ScalarProperty Name="linkedin" ColumnName="linkedin" />
+          <ScalarProperty Name="editingDate" ColumnName="editingDate" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tblUsersAuthority">
+      <EntityTypeMapping TypeName="NewsDBModel.tblUsersAuthority">
+        <MappingFragment StoreEntitySet="tblUsersAuthority">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="userId" ColumnName="userId" />
+          <ScalarProperty Name="authorityId" ColumnName="authorityId" />
+          <ScalarProperty Name="newsAuthorizeAdd" ColumnName="newsAuthorizeAdd" />
+          <ScalarProperty Name="newsVideoAuthorizeAdd" ColumnName="newsVideoAuthorizeAdd" />
+          <ScalarProperty Name="CornerTextAuthorizeAdd" ColumnName="CornerTextAuthorizeAdd" />
+          <ScalarProperty Name="newsAlwaysAuthorizeAdd" ColumnName="newsAlwaysAuthorizeAdd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
