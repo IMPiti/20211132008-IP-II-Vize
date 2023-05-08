@@ -4,6 +4,9 @@
 Veritabanı Diagram'ı
 ![Untitled](https://user-images.githubusercontent.com/42031285/236919107-bc42a111-feae-451e-a73d-c0b3a336184b.png)
 
+DBDiagram.io:
+https://dbdiagram.io/d/644ea1dcdca9fb07c447fe70
+
 Yetkiler
 ---
 1. Admin
